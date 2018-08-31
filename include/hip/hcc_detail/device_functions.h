@@ -29,8 +29,10 @@ THE SOFTWARE.
 #include <hip/hip_runtime_api.h>
 #include <stddef.h>
 
-typedef unsigned long ulong;
+typedef unsigned char uchar;
+typedef unsigned short ushort;
 typedef unsigned int uint;
+typedef unsigned long ulong;
 
 #include <hip/hip_vector_types.h>
 #include <hip/hcc_detail/device_library_decls.h>
@@ -48,20 +50,12 @@ __device__ static inline unsigned int __popcll(unsigned long long int input) {
     return __builtin_popcountl(input);
 }
 
-__device__ static inline unsigned int __clz(unsigned int input) {
-    return input == 0 ? 32 : __builtin_clz(input);
+__device__ static inline int __clz(int input) {
+  return __ockl_clz_u32((uint)input);
 }
 
-__device__ static inline unsigned int __clzll(unsigned long long int input) {
-    return input == 0 ? 64 : ( input == 0 ? -1 : __builtin_clzl(input) );
-}
-
-__device__ static inline unsigned int __clz(int input) {
-    return input == 0 ? 32 : ( input > 0 ? __builtin_clz(input) : __builtin_clz(~input) );
-}
-
-__device__ static inline unsigned int __clzll(long long int input) {
-    return input == 0 ? 64 : input > 0 ? __builtin_clzl(input) : __builtin_clzl(~input);
+__device__ static inline int __clzll(long long int input) {
+    return __ockl_clz_u64((ulong)input);
 }
 
 __device__ static inline unsigned int __ffs(unsigned int input) {

@@ -40,6 +40,11 @@ extern "C" __device__ __attribute__((const)) uint __ockl_mul_hi_u32(uint, uint);
 extern "C" __device__ __attribute__((const)) int __ockl_mul_hi_i32(int, int);
 extern "C" __device__ __attribute__((const)) uint __ockl_sad_u32(uint, uint, uint);
 
+extern "C" __device__ __attribute__((const)) uchar __ockl_clz_u8(uchar);
+extern "C" __device__ __attribute__((const)) ushort __ockl_clz_u16(ushort);
+extern "C" __device__ __attribute__((const)) uint __ockl_clz_u32(uint);
+extern "C" __device__ __attribute__((const)) ulong __ockl_clz_u64(ulong);
+
 extern "C" __device__ __attribute__((const)) float __ocml_floor_f32(float);
 extern "C" __device__ __attribute__((const)) float __ocml_rint_f32(float);
 extern "C" __device__ __attribute__((const)) float __ocml_ceil_f32(float);
